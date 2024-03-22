@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kk/authenticationScreen/login_screen.dart';
+import 'package:kk/controllers/authentication_controller.dart';
 
-void main() {
+void main() async
+{
+  WidgetsFlutterBinding.ensureInitialized();
+
+  Get.put(AuthenticationController());
+
   runApp(const MyApp());
 }
 

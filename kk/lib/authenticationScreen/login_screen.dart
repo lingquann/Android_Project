@@ -99,6 +99,7 @@ bool showProgressBar = false;
                 height: 30,
               ),
 
+              //login button
               Container(
                 width: MediaQuery.of(context).size.width - 36,
                 height: 55,
@@ -170,6 +171,10 @@ bool showProgressBar = false;
               ) 
               : Container(),
 
+              const SizedBox(
+                height: 30,
+              ),
+              
             ]),
           ),
       ),

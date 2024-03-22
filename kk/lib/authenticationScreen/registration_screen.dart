@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:kk/controllers/authentication_controller.dart';
 import 'package:kk/widgets/custom_text_field_widget.dart';
 
 
@@ -49,6 +53,9 @@ class _RegistrationScreenState extends State<RegistrationScreen>
   TextEditingController religionTextEditingController = TextEditingController();
   TextEditingController ethnicityTextEditingController = TextEditingController();
   
+  bool showProgressBar = false;
+
+  var authenticationController = AuthenticationController.authController;
   
   @override
   Widget build(BuildContext context) 
@@ -89,18 +96,74 @@ class _RegistrationScreenState extends State<RegistrationScreen>
               ),
 
               //choose image circle avatar
-              GestureDetector(
-                onTap: ()
-                {
-
-                },
-                child: CircleAvatar(
+              authenticationController.imageFile == null ?
+              const CircleAvatar(
                   radius: 80,
                   backgroundImage: AssetImage(
                     "images/profile_avatar.png"
                   ),
                   backgroundColor: Colors.black,
+                ):
+                Container(
+                  width: 180,
+                  height: 180,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.grey,
+                    image: DecorationImage(
+                      fit: BoxFit.fitHeight,
+                      image: FileImage(
+                        File(
+                          authenticationController.imageFile!.path,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
+              
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
+                  IconButton(
+                    onPressed: () async
+                    {
+                      await authenticationController.pickedImageFromGallery();
+
+                      setState(() {
+                        authenticationController.imageFile;
+
+                      });
+                    }, 
+                    icon: Icon(
+                      Icons.image_outlined,
+                      color: Colors.grey,
+                      size: 30,
+                    ),
+                  ),
+
+                  const SizedBox(
+                    width: 10,
+                  ),
+
+                  IconButton(
+                    onPressed: () async
+                    {
+                      await authenticationController.captureImageFromPhoneCamera();
+
+                      setState(() {
+                        authenticationController.imageFile;
+                        
+                      });
+                    }, 
+                    icon: Icon(
+                      Icons.camera_alt_outlined,
+                      color: Colors.grey,
+                      size: 30,
+                    ),
+                  ),
+
+                ],
               ),
             
               const SizedBox(
@@ -439,6 +502,258 @@ class _RegistrationScreenState extends State<RegistrationScreen>
               const SizedBox(
                 height: 24,
               ),
+
+              //employmentStatus
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 36,
+                height: 55,
+                child: CustomTextFieldWidget(
+                editingController: employmentTextEditingController,
+                labelText: "Employment Status",
+                iconData: CupertinoIcons.rectangle_stack_person_crop_fill,
+                isObscure: false,
+                ),
+              ),
+
+              const SizedBox(
+                height: 24,
+              ),
+
+              //income
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 36,
+                height: 55,
+                child: CustomTextFieldWidget(
+                editingController: incomeTextEditingController,
+                labelText: "Income",
+                iconData: CupertinoIcons.money_dollar_circle,
+                isObscure: false,
+                ),
+              ),
+
+              const SizedBox(
+                height: 24,
+              ),
+
+              //livingSituation
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 36,
+                height: 55,
+                child: CustomTextFieldWidget(
+                editingController: livingSituationTextEditingController,
+                labelText: "Living Situation",
+                iconData: CupertinoIcons.person_2_square_stack,
+                isObscure: false,
+                ),
+              ),
+
+              const SizedBox(
+                height: 24,
+              ),
+
+              //willingToRelocate
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 36,
+                height: 55,
+                child: CustomTextFieldWidget(
+                editingController: willingToRelocateTextEditingController,
+                labelText: "Are you willing to Relocate?",
+                iconData: CupertinoIcons.person_2,
+                isObscure: false,
+                ),
+              ),
+
+              const SizedBox(
+                height: 24,
+              ),
+
+              //relationshipYouAreLookingFor
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 36,
+                height: 55,
+                child: CustomTextFieldWidget(
+                editingController: relationshipYouAreLookingForTextEditingController,
+                labelText: "What relationship you are looking for?",
+                iconData: CupertinoIcons.person_2,
+                isObscure: false,
+                ),
+              ),
+
+              const SizedBox(
+                height: 24,
+              ),
+
+              //Background - Cultural Values
+              const Text(
+                "Background - Cultural Values",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(
+                height: 12,
+              ),
+
+
+              //nationaliy
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 36,
+                height: 55,
+                child: CustomTextFieldWidget(
+                editingController: nationalityTextEditingController,
+                labelText: "Nationality",
+                iconData: Icons.flag_circle_outlined,
+                isObscure: false,
+                ),
+              ),
+
+              const SizedBox(
+                height: 24,
+              ),
+
+              //education
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 36,
+                height: 55,
+                child: CustomTextFieldWidget(
+                editingController: educationTextEditingController,
+                labelText: "Education",
+                iconData: Icons.history_edu,
+                isObscure: false,
+                ),
+              ),
+              
+              const SizedBox(
+                height: 24,
+              ),
+
+              //languageSpoken
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 36,
+                height: 55,
+                child: CustomTextFieldWidget(
+                editingController: languageSpokenTextEditingController,
+                labelText: "Language Spoken",
+                iconData: CupertinoIcons.person_badge_plus_fill,
+                isObscure: false,
+                ),
+              ),
+
+              const SizedBox(
+                height: 24,
+              ),
+
+              //religion
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 36,
+                height: 55,
+                child: CustomTextFieldWidget(
+                editingController: religionTextEditingController,
+                labelText: "Religion",
+                iconData: CupertinoIcons.checkmark_seal_fill,
+                isObscure: false,
+                ),
+              ),
+
+              const SizedBox(
+                height: 24,
+              ),
+
+              //ethnicity
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 36,
+                height: 55,
+                child: CustomTextFieldWidget(
+                editingController: ethnicityTextEditingController,
+                labelText: "Ethnicity",
+                iconData: CupertinoIcons.eye,
+                isObscure: false,
+                ),
+              ),
+
+              const SizedBox(
+                height: 30,
+              ),
+              
+              //create account button
+              Container(
+                width: MediaQuery.of(context).size.width - 36,
+                height: 55,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  )
+                ),
+                child: InkWell(
+                  onTap: ()
+                  {
+
+                  },
+                  child: const Center(
+                    child: Text(
+                      "Create Account",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              
+              const SizedBox(
+                height: 16,
+              ),
+
+              //already have an account login here button
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  
+                  const Text(
+                    "Already have an account? ",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                    ),
+                  ),
+
+                  InkWell(
+                    onTap: ()
+                    {
+                      Get.back();
+                    },
+                    child: const Text(
+                      "Login Here",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                ],
+                ),
+
+              const SizedBox(
+                height: 16,
+              ),
+
+              showProgressBar == true 
+              ? const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.pink),
+              ) 
+              : Container(),
+
+              const SizedBox(
+                height: 30,
+              ),
+              
 
             ],
           ),
