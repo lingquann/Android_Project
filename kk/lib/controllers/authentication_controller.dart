@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kk/homeScreen/home_screen.dart';
 import 'package:kk/models/person.dart' as personModel;
 
 
@@ -55,7 +56,7 @@ class AuthenticationController extends GetxController
     File imageProfile, String name, String email, String password, 
     String age, String phoneNo, String city, String country, 
     String profileHeading, String lookingForInaPartner, 
-    String publishDateTime,
+    // String publishDateTime,
     
     //Appearance
     String height, String weight, String bodyType,
@@ -86,7 +87,7 @@ class AuthenticationController extends GetxController
           email: email,
           password: password,
           name: name,
-          age: age,
+          age: int.parse(age),   
           phoneNo: phoneNo,
           city: city,
           country: country,
@@ -123,6 +124,7 @@ class AuthenticationController extends GetxController
 
         await FirebaseFirestore.instance.collection("user").doc(FirebaseAuth.instance.currentUser!.uid).set(personInstance.toJson());
       // Get.snackbar("Account Created","Congratulation: $errorMsg");
+        Get.to(HomeSceen());
     }
     catch(errorMsg)
     {

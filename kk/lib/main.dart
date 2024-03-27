@@ -18,6 +18,7 @@ void main() async
       projectId: "dating-app-45cc9"),
       
   );
+  
   await Firebase.initializeApp().then((value){
     Get.put(AuthenticationController());
   });

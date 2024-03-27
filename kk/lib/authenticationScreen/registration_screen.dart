@@ -689,9 +689,9 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                   )
                 ),
                 child: InkWell(
-                  onTap: ()
+                  onTap: () async
                   {
-                    if(authenticationController.profileImage != null)
+                    if(authenticationController.imageFile != null)
                     {
                       if(
                       //personal info
@@ -730,7 +730,52 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                       && religionTextEditingController.text.trim().isNotEmpty
                       && ethnicityTextEditingController.text.trim().isNotEmpty)
                       {
+                        setState(() {
+                          showProgressBar = true;
+                        });
 
+                        await authenticationController.createNewUserAccount(
+                          //personal info
+                          authenticationController.profileImage!,
+                          emailTextEditingController.text.trim(),
+                          passwordTextEditingController.text.trim(),
+                          nameTextEditingController.text.trim(),
+                          ageTextEditingController.text.trim(),
+                          phoneNoTextEditingController.text.trim(),
+                          cityTextEditingController.text.trim(),
+                          countryTextEditingController.text.trim(),
+                          professionTextEditingController.text.trim(),
+                          lookingForInaPartnerTextEditingController.text.trim(),
+
+                          //Appearance
+                          heightTextEditingController.text.trim(),
+                          weightTextEditingController.text.trim(),
+                          bodyTypeTextEditingController.text.trim(),
+
+                          //Life style
+                          drinkTextEditingController.text.trim(),
+                          smokeTextEditingController.text.trim(),
+                          martialStatusTextEditingController.text.trim(),
+                          haveChildrenTextEditingController.text.trim(),
+                          noOfChildrenTextEditingController.text.trim(),
+                          professionTextEditingController.text.trim(),
+                          employmentTextEditingController.text.trim(),
+                          incomeTextEditingController.text.trim(),
+                          livingSituationTextEditingController.text.trim(),
+                          willingToRelocateTextEditingController.text.trim(),
+                          relationshipYouAreLookingForTextEditingController.text.trim(),
+
+                          //Background - Cutural Values
+                          nationalityTextEditingController.text.trim(),
+                          educationTextEditingController.text.trim(),
+                          languageSpokenTextEditingController.text.trim(),
+                          religionTextEditingController.text.trim(),
+                          ethnicityTextEditingController.text.trim(),
+                        );
+
+                        setState(() {
+                          showProgressBar = false;
+                        });
                       }
                       else
                       {
