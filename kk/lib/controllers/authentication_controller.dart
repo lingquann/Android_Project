@@ -122,7 +122,7 @@ class AuthenticationController extends GetxController
         );
 
         await FirebaseFirestore.instance.collection("user").doc(FirebaseAuth.instance.currentUser!.uid).set(personInstance.toJson());
-      Get.snackbar("Account Created","Congratulation: $errorMsg");
+      // Get.snackbar("Account Created","Congratulation: $errorMsg");
     }
     catch(errorMsg)
     {

@@ -67,8 +67,18 @@ flutter {
 }
 
 dependencies {
+<<<<<<< HEAD
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
 }
 
 // apply plugin: 'com.google.gms.google-services'
+=======
+    //implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+    implementation("com.google.firebase:firebase-analytics")
+}
+
+// apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter_gradle"
+apply plugin: 'com.google.gms.google-services'
+>>>>>>> 2681663f1def90095ebbf19c427511712227ff82

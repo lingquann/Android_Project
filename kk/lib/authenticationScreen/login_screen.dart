@@ -35,15 +35,18 @@ bool showProgressBar = false;
               ),
 
               const CircleAvatar(
-                  radius: 70,
+                  radius: 60,
                   backgroundImage: AssetImage(
                     "images/logo.png"
                   ),
                   backgroundColor: Colors.black,
-                ),
+
+              ),
               // Image.asset(
               //   "images/logo.png",
               //   width: 100,
+                
+
               // ),
 
               const SizedBox(
