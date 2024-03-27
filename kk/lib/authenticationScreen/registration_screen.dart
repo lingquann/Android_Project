@@ -730,7 +730,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                       && religionTextEditingController.text.trim().isNotEmpty
                       && ethnicityTextEditingController.text.trim().isNotEmpty)
                       {
-
+                        
                       }
                       else
                       {
