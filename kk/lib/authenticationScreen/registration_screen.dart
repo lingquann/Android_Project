@@ -22,7 +22,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
   TextEditingController passwordTextEditingController = TextEditingController();
   TextEditingController nameTextEditingController = TextEditingController();
   TextEditingController ageTextEditingController = TextEditingController();
-  TextEditingController phoneTextEditingController = TextEditingController();
+  TextEditingController phoneNoTextEditingController = TextEditingController();
   TextEditingController cityTextEditingController = TextEditingController();
   TextEditingController countryTextEditingController = TextEditingController();
   TextEditingController profileHeadingTextEditingController = TextEditingController();
@@ -31,7 +31,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
   //Appearance
   TextEditingController heightTextEditingController = TextEditingController();
   TextEditingController weightTextEditingController = TextEditingController();
-  TextEditingController bodyTextEditingController = TextEditingController();
+  TextEditingController bodyTypeTextEditingController = TextEditingController();
 
   //Life style
   TextEditingController drinkTextEditingController = TextEditingController();
@@ -254,7 +254,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                 width: MediaQuery.of(context).size.width - 36,
                 height: 55,
                 child: CustomTextFieldWidget(
-                editingController: phoneTextEditingController,
+                editingController: phoneNoTextEditingController,
                 labelText: "Phone",
                 iconData: Icons.phone,
                 isObscure: true,
@@ -381,7 +381,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                 width: MediaQuery.of(context).size.width - 36,
                 height: 55,
                 child: CustomTextFieldWidget(
-                editingController: bodyTextEditingController,
+                editingController: bodyTypeTextEditingController,
                 labelText: "Body Type",
                 iconData: Icons.type_specimen,
                 isObscure: false,
@@ -691,7 +691,56 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                 child: InkWell(
                   onTap: ()
                   {
+                    if(authenticationController.profileImage != null)
+                    {
+                      if(
+                      //personal info
+                      nameTextEditingController.text.trim().isNotEmpty 
+                      && emailTextEditingController.text.trim().isNotEmpty 
+                      && passwordTextEditingController.text.trim().isNotEmpty
+                      && ageTextEditingController.text.trim().isNotEmpty
+                      && phoneNoTextEditingController.text.trim().isNotEmpty
+                      && cityTextEditingController.text.trim().isNotEmpty
+                      && countryTextEditingController.text.trim().isNotEmpty
+                      && profileHeadingTextEditingController.text.trim().isNotEmpty
+                      && lookingForInaPartnerTextEditingController.text.trim().isNotEmpty &&
+                      
+                      //Appearance
+                      heightTextEditingController.text.trim().isNotEmpty
+                      && weightTextEditingController.text.trim().isNotEmpty
+                      && bodyTypeTextEditingController.text.trim().isNotEmpty &&
+                      
+                      //Life style
+                      drinkTextEditingController.text.trim().isNotEmpty
+                      && smokeTextEditingController.text.trim().isNotEmpty
+                      && martialStatusTextEditingController.text.trim().isNotEmpty
+                      && haveChildrenTextEditingController.text.trim().isNotEmpty
+                      && noOfChildrenTextEditingController.text.trim().isNotEmpty
+                      && professionTextEditingController.text.trim().isNotEmpty
+                      && employmentTextEditingController.text.trim().isNotEmpty
+                      && incomeTextEditingController.text.trim().isNotEmpty
+                      && livingSituationTextEditingController.text.trim().isNotEmpty
+                      && willingToRelocateTextEditingController.text.trim().isNotEmpty
+                      && relationshipYouAreLookingForTextEditingController.text.trim().isNotEmpty &&
+                      
+                      //Background - Cutural Values
+                      nationalityTextEditingController.text.trim().isNotEmpty
+                      && educationTextEditingController.text.trim().isNotEmpty
+                      && languageSpokenTextEditingController.text.trim().isNotEmpty
+                      && religionTextEditingController.text.trim().isNotEmpty
+                      && ethnicityTextEditingController.text.trim().isNotEmpty)
+                      {
 
+                      }
+                      else
+                      {
+                        Get.snackbar("A Field is Empty", "Please fill out all field in text fields.");
+                      }
+                    }
+                    else
+                    {
+                      Get.snackbar("Image File Missing", "Please pick image from Gallery or capture with Camera");
+                    }
                   },
                   child: const Center(
                     child: Text(
