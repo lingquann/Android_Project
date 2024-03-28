@@ -14,6 +14,7 @@ class _FavoriteSentFavoriteReceivedScreenState extends State<FavoriteSentFavorit
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      
       body: Center(
         child: Text(
           "Favorite Sent Favorite Received Screen",

@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kk/controllers/profile-controller.dart';
 import 'package:get/get.dart';
+import 'package:kk/global.dart';
 
 
 class SwippingScreen extends StatefulWidget 
@@ -15,6 +18,31 @@ class SwippingScreen extends StatefulWidget
 class _SwippingScreenState extends State<SwippingScreen> 
 {
   ProfileController profileController = Get.put(ProfileController());
+  String senderName = "";
+  readCurrentUserData() async
+  {
+    await FirebaseFirestore.instance
+          .collection("user")
+          .doc(currentUserID)
+          .get()
+          .then((dataSnapshot)
+          {
+            setState(() {
+              senderName = dataSnapshot.data()!["name"].toString();
+            });
+          });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    readCurrentUserData();  
+    
+  
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -200,7 +228,12 @@ class _SwippingScreenState extends State<SwippingScreen>
                       GestureDetector(
                         onTap: ()
                         {
+                          profileController.favoriteSentAndFavoriteReceived(
+                            eachProfileInfo.uid.toString(),
+                            senderName,
 
+
+                          );
                         },
                         child: Image.asset(
                           "images/favorite.png",
