@@ -15,7 +15,10 @@ void main() async
       apiKey: "AIzaSyAOWT-n1xS_EGJ2xJjK43mRl6jyOCegXps", 
       appId: "1:70565685486:android:2fb8519bf9a37994452bff", 
       messagingSenderId: "70565685486", 
-      projectId: "dating-app-45cc9"),
+      projectId: "dating-app-45cc9",
+      storageBucket: "dating-app-45cc9.appspot.com",
+      ),
+      
       
   );
   

@@ -53,7 +53,7 @@ class AuthenticationController extends GetxController
   }
   createNewUserAccount(
     //personal info
-    File imageProfile, String name, String email, String password, 
+    File imageProfile, String email, String password, String name, 
     String age, String phoneNo, String city, String country, 
     String profileHeading, String lookingForInaPartner, 
     // String publishDateTime,
