@@ -33,23 +33,15 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
 
               const SizedBox(
-                height: 30,
+                height: 80,
               ),
 
-              const CircleAvatar(
-                  radius: 60,
-                  backgroundImage: AssetImage(
-                    "images/logo.png"
-                  ),
-                  backgroundColor: Colors.black,
-
-              ),
-              // Image.asset(
-              //   "images/logo.png",
-              //   width: 100,
+              Image.asset(
+                "images/logo.png",
+                width: 150,
                 
 
-              // ),
+              ),
 
               const SizedBox(
                 height: 30,
