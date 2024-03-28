@@ -20,6 +20,7 @@ class _SwippingScreenState extends State<SwippingScreen>
     return Scaffold(
       body: Obx(()
       {
+
         return PageView.builder(
         itemCount: profileController.allUsersProfileList.length,
         controller: PageController(initialPage: 0, viewportFraction: 1),
@@ -40,7 +41,7 @@ class _SwippingScreenState extends State<SwippingScreen>
           );
         },
       );
-      })
+      }),
     );
   }
 }

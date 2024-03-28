@@ -16,7 +16,7 @@ class ProfileController extends GetxController
 
     usersProfileList.bindStream(
       FirebaseFirestore.instance
-      .collection("users")
+      .collection("user")
       .where("uid", isNotEqualTo: FirebaseAuth.instance.currentUser!.uid)
       .snapshots()
       .map((QuerySnapshot queryDataSnapshot)
