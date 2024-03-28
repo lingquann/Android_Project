@@ -257,7 +257,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                 editingController: phoneNoTextEditingController,
                 labelText: "Phone",
                 iconData: Icons.phone,
-                isObscure: true,
+                isObscure: false,
                 ),
               ),
 

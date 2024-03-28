@@ -83,6 +83,7 @@ class AuthenticationController extends GetxController
         //3. 
         personModel.Person personInstance = personModel.Person(
           //personal info
+          uid: FirebaseAuth.instance.currentUser!.uid, 
           imageProfile: urlOfDownloadedImage,
           email: email,
           password: password,
@@ -122,9 +123,13 @@ class AuthenticationController extends GetxController
 
         );
 
-        await FirebaseFirestore.instance.collection("user").doc(FirebaseAuth.instance.currentUser!.uid).set(personInstance.toJson());
-      // Get.snackbar("Account Created","Congratulation: $errorMsg");
-        Get.to(HomeSceen());
+        await FirebaseFirestore.instance.collection("user")
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .set(personInstance.toJson());
+
+
+        Get.snackbar("Account Created","Congratulation, your account has been created.");
+        Get.to(HomeScreen());
     }
     catch(errorMsg)
     {
