@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kk/global.dart';
 import 'package:kk/models/person.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 
 class ProfileController extends GetxController
@@ -30,5 +32,54 @@ class ProfileController extends GetxController
       return profilesList;
     })
   );
+  }
+  
+  favoriteSentAndFavoriteReceived(String toUserID, String senderName) async
+  {
+    var document = await FirebaseFirestore.instance
+          .collection("user")
+          .doc(toUserID)
+          .collection("favoriteReceived")
+          .doc(currentUserID)
+          .get();
+
+    // remove the favorite from database
+    if(document.exists) 
+    {
+        // xoa nguoi dung hien tai favoriteReceived list khoi ho so ca nhan
+        await FirebaseFirestore.instance
+          .collection("user")
+          .doc(toUserID)
+          .collection("favoriteReceived")
+          .doc(currentUserID)
+          .delete();
+
+        // xoa ho so cua minh o doi tac
+        await FirebaseFirestore.instance
+          .collection("user")
+          .doc(currentUserID)
+          .collection("favoriteSent")
+          .doc(toUserID)
+          .delete();  
+    }
+    else // mask as favorite //add favorite in database
+    {
+      await FirebaseFirestore.instance
+          .collection("user")
+          .doc(toUserID)
+          .collection("favoriteReceived")
+          .doc(currentUserID)
+          .set({});
+
+        // xoa ho so cua minh o doi tac
+        await FirebaseFirestore.instance
+          .collection("user")
+          .doc(currentUserID)
+          .collection("favoriteSent")
+          .doc(toUserID)
+          .set({});  
+    }
+
+    update();
   }
 }
