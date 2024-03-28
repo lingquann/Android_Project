@@ -83,7 +83,7 @@ class Person
     
   });
 
-  static Person fromdataSnapshot(DocumentSnapshot snapshot)
+  static Person fromDataSnapshot(DocumentSnapshot snapshot)
   {
     var dataSnapshot = snapshot.data() as Map<String, dynamic>;
 

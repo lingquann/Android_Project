@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kk/authenticationScreen/login_screen.dart';
 import 'package:kk/homeScreen/home_screen.dart';
 import 'package:kk/models/person.dart' as personModel;
 
@@ -11,6 +12,8 @@ import 'package:kk/models/person.dart' as personModel;
 class AuthenticationController extends GetxController
 {
   static AuthenticationController authController = Get.find();
+
+  late Rx<User?> firebaseCurrentUser;
 
   late Rx<File?> pickedFile;
   File? get profileImage => pickedFile.value;
@@ -83,7 +86,10 @@ class AuthenticationController extends GetxController
         //3. 
         personModel.Person personInstance = personModel.Person(
           //personal info
+
           uid: FirebaseAuth.instance.currentUser!.uid, 
+
+
           imageProfile: urlOfDownloadedImage,
           email: email,
           password: password,
@@ -123,9 +129,11 @@ class AuthenticationController extends GetxController
 
         );
 
+
         await FirebaseFirestore.instance.collection("user")
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .set(personInstance.toJson());
+
 
 
         Get.snackbar("Account Created","Congratulation, your account has been created.");
@@ -135,5 +143,46 @@ class AuthenticationController extends GetxController
     {
       Get.snackbar("Account Creation Unsuccessful","Error occurred: $errorMsg");
     }
+  }
+
+  loginUser(String emailUser, String passwordUser) async
+  {
+    try
+    {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailUser, 
+        password: passwordUser,
+        );
+        Get.snackbar("Logged-in Successful", "You're logged-in successfully.");
+
+        Get.to(HomeScreen());
+    }
+    catch(errorMsg)
+    {
+      Get.snackbar("Login Unsuccessful", "Eror occurred: $errorMsg");
+    }
+  }
+
+  checkIfUserIsLoggedIn(User? currentUser)
+  {
+    if(currentUser == null)
+    {
+      Get.to(LoginScreen());
+    }
+    else
+    {
+      Get.to(HomeScreen());
+    }
+  }
+
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
+
+    firebaseCurrentUser = Rx<User?>(FirebaseAuth.instance.currentUser);
+    firebaseCurrentUser.bindStream(FirebaseAuth.instance.authStateChanges());
+
+    ever(firebaseCurrentUser, checkIfUserIsLoggedIn);
   }
 }
