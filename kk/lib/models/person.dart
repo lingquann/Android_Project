@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Person
 {
   //personal info
+  String? uid;
   String? imageProfile;
   String? name;
   String? email;
@@ -42,6 +43,7 @@ class Person
 
   Person({
     //personal info
+    this.uid,
     this.imageProfile,
     this.name,
     this.email,
@@ -81,12 +83,13 @@ class Person
     
   });
 
-  static Person fromdataSnapshot(DocumentSnapshot snapshot)
+  static Person fromDataSnapshot(DocumentSnapshot snapshot)
   {
     var dataSnapshot = snapshot.data() as Map<String, dynamic>;
 
     return Person(
       //personal info
+      uid: dataSnapshot["uid"],
       name: dataSnapshot["name"],
       imageProfile: dataSnapshot["imageProfile"],
       email: dataSnapshot["email"],
@@ -129,6 +132,7 @@ class Person
   Map<String, dynamic> toJson()=>
   {
     //personal info
+    "uid": uid,
     "imageProfile": imageProfile,
     "name": name,
     "email": email,

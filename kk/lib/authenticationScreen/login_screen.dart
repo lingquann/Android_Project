@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:kk/authenticationScreen/registration_screen.dart';
+import 'package:kk/controllers/authentication_controller.dart';
 import 'package:kk/widgets/custom_text_field_widget.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -19,7 +20,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
-bool showProgressBar = false;
+  bool showProgressBar = false;
+  var controllerAuth = AuthenticationController.authController;
 
   @override
   Widget build(BuildContext context) 
@@ -120,9 +122,28 @@ bool showProgressBar = false;
                   )
                 ),
                 child: InkWell(
-                  onTap: ()
+                  onTap: () async
                   {
+                    if(emailTextEditingController.text.trim().isNotEmpty
+                    && passwordTextEditingController.text.trim().isNotEmpty)
+                    {
+                      setState(() {
+                        showProgressBar = true;
+                      });
 
+                      await controllerAuth.loginUser(
+                        emailTextEditingController.text.trim(), 
+                        passwordTextEditingController.text.trim()
+                      );
+
+                      setState(() {
+                        showProgressBar = false;
+                      });
+                    }
+                    else
+                    {
+                      Get.snackbar("Email/Password is Missing", "Please fill all fields.");
+                    }
                   },
                   child: const Center(
                     child: Text(
