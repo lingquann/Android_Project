@@ -2,6 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slider/carousel.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:kk/accountSettingScreen/account_settings_screen.dart';
+import 'package:kk/global.dart';
 
 
 class UserDetailsScreen extends StatefulWidget 
@@ -139,18 +143,40 @@ class _UserDetailsScreenState extends State<UserDetailsScreen>
           ),
         ),
         centerTitle: true,
-        automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: widget.userId == currentUserID ? false : true,
+        leading: widget.userId != currentUserID ? IconButton(
+          onPressed: ()
+          {
+            Get.back();
+          },
+          icon: const Icon(Icons.arrow_back_outlined, size: 30,),
+        ) : Container(),
         actions: [
-          IconButton(
-            onPressed: ()
-            {
-              FirebaseAuth.instance.signOut();
-            },
-            icon: const Icon(
-              Icons.logout,
-              size: 30,
-            )
-          )
+          widget.userId == currentUserID ? 
+          Row(
+            children: [
+              IconButton(
+              onPressed: ()
+              {
+                Get.to(AccountSettingsScreen());
+              },
+              icon: const Icon(
+                Icons.settings,
+                size: 30,
+              )
+            ),
+              IconButton(
+              onPressed: ()
+              {
+                FirebaseAuth.instance.signOut();
+              },
+              icon: const Icon(
+                Icons.logout,
+                size: 30,
+              )
+            ) ,
+            ],
+          ) : Container(),
         ],
       ),
       body: SingleChildScrollView(

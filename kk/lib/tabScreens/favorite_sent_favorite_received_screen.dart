@@ -134,7 +134,7 @@ class _FavoriteSentFavoriteReceivedScreenState
 
 
                 setState(() {
-                  isFavoriteSentClicked = true;
+                  isFavoriteSentClicked = false;
                 });
 
 
@@ -143,7 +143,7 @@ class _FavoriteSentFavoriteReceivedScreenState
               child: Text(
                 "I'm their Favorites",
                 style: TextStyle(
-                  color: isFavoriteSentClicked ? Colors.grey : Colors.white,
+                  color: isFavoriteSentClicked ?  Colors.grey : Colors.white,
                   fontWeight: isFavoriteSentClicked ? FontWeight.normal : FontWeight.bold,
                   fontSize: 14,
                 ),
