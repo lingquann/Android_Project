@@ -163,7 +163,7 @@ class _LikeSentLikeReceivedScreenState
 
 
                 setState(() {
-                  isLikeSentClicked = true;
+                  isLikeSentClicked = false;
                 });
 
 
