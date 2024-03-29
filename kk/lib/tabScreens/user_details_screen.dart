@@ -82,7 +82,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen>
         setState(() {
           //personal info
           name = snapshot.data()!["name"];
-          age = snapshot.data()!["age"];
+          age = snapshot.data()!["age"].toString();
           phoneNo = snapshot.data()!["phoneNo"];
           city = snapshot.data()!["city"];
           country = snapshot.data()!["country"];
@@ -189,6 +189,835 @@ class _UserDetailsScreenState extends State<UserDetailsScreen>
                 ),
               ),
 
+              const SizedBox(height: 10.0,),
+
+              //personal info title
+              const SizedBox(height: 30,),
+              const Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Personal Info:",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const Divider(
+                color: Colors.white,
+                thickness: 2,
+              ),
+
+              //personal info table data
+              Container(
+                padding: const EdgeInsets.all(20.0),
+                child: Table(
+                  children: [
+
+                    //name
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Name:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          name,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //age
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Age:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          age,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //phoneNo
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Phone Number:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          phoneNo,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //city
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "City:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          city,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //country
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Country:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          country,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //seeking
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Seeking:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          lookingForInaPartner,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+                  ],
+                ),
+              ),
+
+              //Appearance title
+              const SizedBox(height: 30,),
+              const Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Appearance:",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const Divider(
+                color: Colors.white,
+                thickness: 2,
+              ),
+
+              //appearance table data
+              Container(
+                padding: const EdgeInsets.all(20.0),
+                child: Table(
+                  children: [
+                    
+                    //height
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Height:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          height,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //weight
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Weight:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          weight,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //bodyType
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Body Type:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          bodyType,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                  ],
+                ),
+              ),
+
+              //life style title
+              const SizedBox(height: 30,),
+              const Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Life stlye:",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const Divider(
+                color: Colors.white,
+                thickness: 2,
+              ),
+
+              //life style table data
+              Container(
+                padding: const EdgeInsets.all(20.0),
+                child: Table(
+                  children: [
+                    
+                    //drink
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Drink:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          drink,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //smoke
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Smoke:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          smoke,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //martial status
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Martial Status:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          martialStatus,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //have children
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Have Children:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          haveChildren,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //Number of children
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Number of Children:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          noOfChildren,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //Profession
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Profession:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          profession,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //Employment status
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Employment Status:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          employmentStatus,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //income
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Income:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          income,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //Living situation
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Living Situation:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          livingSituation,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //Willing to relocate
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Willing to Relocate:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          willingToRelocate,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //Looking for
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Looking for:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          relationshipYouAreLookingFor,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                  ],
+                ),
+              ),
+
+              //background - cultural values title
+              const SizedBox(height: 30,),
+              const Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Background - Cultural Values:",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const Divider(
+                color: Colors.white,
+                thickness: 2,
+              ),
+
+              //background - cultural values table data
+              Container(
+                padding: const EdgeInsets.all(20.0),
+                child: Table(
+                  children: [
+                    
+                    //nationality
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Nationality:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          nationality,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //education
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Education:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          education,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //language spoken
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Language Spoken:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          languageSpoken,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //religion
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Religion:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          religion,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),  
+
+                    //extra row
+                    const TableRow(
+                      children: [
+                        Text(""),
+                        Text(""),
+                      ],
+                    ),
+
+                    //ethnicity
+                    TableRow(
+                      children: 
+                      [
+                        const Text(
+                          "Ethnicity:",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        
+                        Text(
+                          ethnicity,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                          ),
+                        )
+                      ]
+                    ),  
+                  ],
+                ),
+              ),
             ],
           ),
         ),
