@@ -132,4 +132,38 @@ class ProfileController extends GetxController
     update();
   }
   
+  viewSentAndViewReceived(String toUserID, String senderName) async
+  {
+    var document = await FirebaseFirestore.instance
+          .collection("user")
+          .doc(toUserID)
+          .collection("viewReceived")
+          .doc(currentUserID)
+          .get();
+
+    // remove the like from database
+    if(document.exists) 
+    {
+        print("already in view list")
+    }
+    else // mask as favorite //add favorite in database
+    {
+      await FirebaseFirestore.instance
+          .collection("user")
+          .doc(toUserID)
+          .collection("viewReceived")
+          .doc(currentUserID)
+          .set({});
+
+        // xoa ho so cua minh o doi tac
+        await FirebaseFirestore.instance
+          .collection("user")
+          .doc(currentUserID)
+          .collection("viewSent")
+          .doc(toUserID)
+          .set({});  
+    }
+
+    update();
+  }
 }

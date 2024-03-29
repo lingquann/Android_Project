@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:kk/controllers/profile-controller.dart';
 import 'package:get/get.dart';
 import 'package:kk/global.dart';
+import 'package:kk/tabScreens/user_details_screen.dart';
 
 
 class SwippingScreen extends StatefulWidget 
@@ -93,7 +94,15 @@ class _SwippingScreenState extends State<SwippingScreen>
                   GestureDetector(
                     onTap: ()
                     {
+                      profileController.viewSentAndViewReceived(
+                            eachProfileInfo.uid.toString(),
+                            senderName,
+                      );
+                      // send user to profile person  userDetailScreen
 
+                      Get.to(UserDetailsScreen(
+                        userId: eachProfileInfo.uid.toString(),  
+                      ));
                     },
                     child: Column(
                       children: [
