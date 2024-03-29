@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:kk/global.dart';
 
 class FavoriteSentFavoriteReceivedScreen extends StatefulWidget {
@@ -28,7 +30,7 @@ class _FavoriteSentFavoriteReceivedScreenState
       for (int i = 0; i < favoriteSentDocument.docs.length; i++) {
         favoriteSentList.add(favoriteSentDocument.docs[i].id);
       }
-
+      print("favoriteSentList = " + favoriteSentList.toString());
       getKeysDataFromUsersCollection(favoriteSentList);
     } 
     else {
@@ -40,7 +42,7 @@ class _FavoriteSentFavoriteReceivedScreenState
       for (int i = 0; i < favoriteReceivedDocument.docs.length; i++) {
         favoriteReceivedList.add(favoriteReceivedDocument.docs[i].id);
       }
-
+      print("favoriteReceivedList = " + favoriteReceivedList.toString());
       getKeysDataFromUsersCollection(favoriteReceivedList);
 
     }
@@ -60,19 +62,186 @@ class _FavoriteSentFavoriteReceivedScreenState
         }
       }
     }
+
+    setState(() {
+      favoritesList;
+    });
+    print("favoritesList = " + favoritesList.toString());
   }
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          "Favorite Sent Favorite Received Screen",
-          style: TextStyle(
-            color: Colors.red,
-            fontSize: 20,
-          ),
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    getFavoriteListKeys();
+  }
+
+  @override
+  Widget build(BuildContext context) 
+  {
+    return Scaffold(
+    
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+            TextButton(
+              onPressed: ()
+              {
+                favoriteSentList.clear();
+                favoriteSentList = [];
+                favoriteReceivedList.clear();
+                favoriteReceivedList = [];
+                favoritesList.clear();
+                favoritesList = [];
+
+
+                setState(() {
+                  isFavoriteSentClicked = true;
+                });
+
+                getFavoriteListKeys();
+              },
+              child: Text(
+                "My Favorites",
+                style: TextStyle(
+                  color: isFavoriteSentClicked ? Colors.white : Colors.grey,
+                  fontWeight: isFavoriteSentClicked ? FontWeight.bold : FontWeight.normal,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+
+            const Text(
+              "     |      ",
+              style: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+
+            TextButton(
+              onPressed: ()
+              {
+                favoriteSentList.clear();
+                favoriteSentList = [];
+                favoriteReceivedList.clear();
+                favoriteReceivedList = [];
+                favoritesList.clear();
+                favoritesList = [];
+
+
+                setState(() {
+                  isFavoriteSentClicked = true;
+                });
+
+
+                getFavoriteListKeys();
+              },
+              child: Text(
+                "I'm their Favorites",
+                style: TextStyle(
+                  color: isFavoriteSentClicked ? Colors.grey : Colors.white,
+                  fontWeight: isFavoriteSentClicked ? FontWeight.normal : FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+
+            
+          ],
         ),
+        centerTitle: true,
+      ),
+      body: favoritesList.isEmpty 
+      ? Center(
+        child:  Icon(Icons.person_off_sharp, color: Colors.white, size: 60,),
+      ) 
+      : GridView.count(
+          crossAxisCount: 2,
+          padding: const EdgeInsets.all(8),
+          children: List.generate(favoritesList.length, (index)
+          {
+            return GridTile(
+              child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Card(
+                  color: Colors.blue.shade200,
+                  child: GestureDetector(
+                    onTap: ()
+                    {
+
+                    },
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(favoritesList[index]["imageProfile"],),
+                          fit: BoxFit.cover, 
+                        )
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+
+                              const Spacer(),
+
+                              //ten tuoi
+                              Text(
+                                  favoritesList[index]["name"].toString() + " ✬ " +  favoritesList[index]["age"].toString(),
+                                  maxLines: 2,
+                                  style: const TextStyle(
+
+                                    overflow: TextOverflow.ellipsis,
+                                    color: Colors.grey,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+
+                              const SizedBox(
+                                height: 4,
+                              ),
+                              //noi o
+                              Row(
+                                children: [
+
+                                  const Icon(
+                                    Icons.location_on_outlined,
+                                    color: Colors.white,
+                                    size: 14,
+                                  ),
+
+                                  Expanded(
+                                    child: Text(
+                                      favoritesList[index]["city"].toString() + " , " +  favoritesList[index]["country"].toString(),
+                                      maxLines: 2,
+                                      style: const TextStyle(
+                                        overflow: TextOverflow.ellipsis,
+                                        color: Colors.grey,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            );
+          }),
       ),
     );
   }
