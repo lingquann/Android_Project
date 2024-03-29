@@ -82,4 +82,54 @@ class ProfileController extends GetxController
 
     update();
   }
+
+  likeSentAndLikeReceived(String toUserID, String senderName) async
+  {
+    var document = await FirebaseFirestore.instance
+          .collection("user")
+          .doc(toUserID)
+          .collection("likeReceived")
+          .doc(currentUserID)
+          .get();
+
+    // remove the like from database
+    if(document.exists) 
+    {
+        // xoa nguoi dung hien tai likeReceived list khoi ho so ca nhan
+        await FirebaseFirestore.instance
+          .collection("user")
+          .doc(toUserID)
+          .collection("likeReceived")
+          .doc(currentUserID)
+          .delete();
+
+        // xoa ho so cua minh o doi tac
+        await FirebaseFirestore.instance
+          .collection("user")
+          .doc(currentUserID)
+          .collection("likeReceived")
+          .doc(toUserID)
+          .delete();  
+    }
+    else // mask as like //add - sent like in database
+    {
+      await FirebaseFirestore.instance
+          .collection("user")
+          .doc(toUserID)
+          .collection("likeReceived")
+          .doc(currentUserID)
+          .set({});
+
+        // xoa ho so cua minh o doi tac
+        await FirebaseFirestore.instance
+          .collection("user")
+          .doc(currentUserID)
+          .collection("likeReceived")
+          .doc(toUserID)
+          .set({});  
+    }
+
+    update();
+  }
+
 }

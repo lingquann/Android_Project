@@ -231,8 +231,6 @@ class _SwippingScreenState extends State<SwippingScreen>
                           profileController.favoriteSentAndFavoriteReceived(
                             eachProfileInfo.uid.toString(),
                             senderName,
-
-
                           );
                         },
                         child: Image.asset(
@@ -257,7 +255,10 @@ class _SwippingScreenState extends State<SwippingScreen>
                       GestureDetector(
                         onTap: ()
                         {
-
+                          profileController.favoriteSentAndFavoriteReceived(
+                            eachProfileInfo.uid.toString(),
+                            senderName,
+                          );
                         },
                         child: Image.asset(
                           "images/like.png",
