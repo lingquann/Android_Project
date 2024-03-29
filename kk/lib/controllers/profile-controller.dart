@@ -95,7 +95,11 @@ class ProfileController extends GetxController
     // remove the like from database
     if(document.exists) 
     {
+<<<<<<< HEAD
         // xoa nguoi dung hien tai likeReceived list khoi ho so ca nhan
+=======
+        // xoa nguoi dung hien tai favoriteReceived list khoi ho so ca nhan
+>>>>>>> ff7c471ee6a86b677ccebf7a7dc8778c72f16e12
         await FirebaseFirestore.instance
           .collection("user")
           .doc(toUserID)
@@ -107,11 +111,19 @@ class ProfileController extends GetxController
         await FirebaseFirestore.instance
           .collection("user")
           .doc(currentUserID)
+<<<<<<< HEAD
           .collection("likeReceived")
           .doc(toUserID)
           .delete();  
     }
     else // mask as like //add - sent like in database
+=======
+          .collection("likeSent")
+          .doc(toUserID)
+          .delete();  
+    }
+    else // mask as favorite //add favorite in database
+>>>>>>> ff7c471ee6a86b677ccebf7a7dc8778c72f16e12
     {
       await FirebaseFirestore.instance
           .collection("user")
@@ -124,12 +136,54 @@ class ProfileController extends GetxController
         await FirebaseFirestore.instance
           .collection("user")
           .doc(currentUserID)
+<<<<<<< HEAD
           .collection("likeReceived")
+=======
+          .collection("likeSent")
+>>>>>>> ff7c471ee6a86b677ccebf7a7dc8778c72f16e12
           .doc(toUserID)
           .set({});  
     }
 
     update();
   }
+<<<<<<< HEAD
 
+=======
+  
+  viewSentAndViewReceived(String toUserID, String senderName) async
+  {
+    var document = await FirebaseFirestore.instance
+          .collection("user")
+          .doc(toUserID)
+          .collection("viewReceived")
+          .doc(currentUserID)
+          .get();
+
+    // remove the like from database
+    if(document.exists) 
+    {
+        print("already in view list");
+    }
+    else // mask as favorite //add favorite in database
+    {
+      await FirebaseFirestore.instance
+          .collection("user")
+          .doc(toUserID)
+          .collection("viewReceived")
+          .doc(currentUserID)
+          .set({});
+
+        // xoa ho so cua minh o doi tac
+        await FirebaseFirestore.instance
+          .collection("user")
+          .doc(currentUserID)
+          .collection("viewSent")
+          .doc(toUserID)
+          .set({});  
+    }
+
+    update();
+  }
+>>>>>>> ff7c471ee6a86b677ccebf7a7dc8778c72f16e12
 }
