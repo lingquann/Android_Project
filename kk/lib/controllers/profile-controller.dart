@@ -144,7 +144,7 @@ class ProfileController extends GetxController
     // remove the like from database
     if(document.exists) 
     {
-        print("already in view list")
+        print("already in view list");
     }
     else // mask as favorite //add favorite in database
     {
